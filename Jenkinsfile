@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('clone') {
             steps {
-                git url https://github.com/Diovane1103/TemaFinal1.git
+                git url : 'https://github.com/Diovane1103/TemaFinal1.git'
             }
         }
         stage('build') {
