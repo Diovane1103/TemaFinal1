@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/desafioFinal")
 public class MensagemController {
-
-    @Autowired
-    private MensagemService service;
+    @Autowired private MensagemService service;
 
     @GetMapping("/")
-    public ResponseEntity getMensagem() {
-        return ResponseEntity.ok(service.getMensagem());
-    }
+    public ResponseEntity getMensagem() { return ResponseEntity.ok(service.getMensagem()); }
 }
