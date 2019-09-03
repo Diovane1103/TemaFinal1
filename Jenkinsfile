@@ -1,9 +1,15 @@
 pipeline {
-    agent { docker { image 'gradle:4.4.1' } }
+    agent any
+
     stages {
+        stage('clone') {
+            steps {
+                git url https://github.com/Diovane1103/TemaFinal1.git
+            }
+        }
         stage('build') {
             steps {
-                sh 'gradle --version'
+                sh 'gradle clean build'
             }
         }
     }
