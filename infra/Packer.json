@@ -1,0 +1,48 @@
+{
+    "variables": {
+        "ansible_host": "default",
+        "ansible_connection": "docker",
+        "app_version": "1.0.42"
+    },
+    "provisioners": [
+        {
+            "type": "ansible",
+            "playbook_file": "artifactory-pro.yml",
+            "groups": [
+                "webserver"
+            ],
+            "extra_arguments": [
+                "--extra-vars",
+                "ansible_host= 8082",
+                "root app_version= profile= ",
+                "--vault-password-file=pwd_file"
+            ]
+        }
+    ],
+    "builders": [
+        {
+            "type": "docker",
+            "image": "helloWorld",
+            "commit": true,
+            "run_command": [
+                "-dit",
+                "--name",
+                "",
+                "",
+                "/bin/bash"
+            ]
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "docker-tag",
+                "repository": "localhost:5000/web-app",
+                "tag": "."
+            },
+            {
+                "type": "docker-push"
+            }
+        ]
+    ]
+}

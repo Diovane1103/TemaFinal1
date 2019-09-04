@@ -17,5 +17,10 @@ pipeline {
                 sh 'curl -uadmin:AP5MhsmLzDkCkV4mrwzXgzLpgGz -O "http://localhost:8081/artifactory/repo/hello.war"'
             }
         }
+        stage ('Packer') {
+            steps {
+                sh 'packer build Packer.json'
+            }
+        }
     }
 }
